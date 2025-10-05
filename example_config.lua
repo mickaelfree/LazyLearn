@@ -2,11 +2,11 @@
 -- Copiez ce fichier dans ~/.config/nvim/lua/plugins/lazylearn.lua
 
 return {
-  -- Remplacez par votre repo GitHub une fois publié
-  -- "votre-nom/LazyLearn.nvim",
+  -- Version GitHub (recommandée)
+  "mickaelfree/LazyLearn.nvim",
 
-  -- Pour test local, utilisez :
-  dir = vim.fn.expand("~/.config/nvim/lua/LazyLearn.nvim"),
+  -- Pour test local, décommentez :
+  -- dir = vim.fn.expand("~/.config/nvim/lua/LazyLearn.nvim"),
 
   -- Dépendance requise
   dependencies = { "nvim-lua/plenary.nvim" },
