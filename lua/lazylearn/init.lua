@@ -11,6 +11,7 @@ local ui = require("lazylearn.ui")
 local api = require("lazylearn.api")
 local prompts = require("lazylearn.prompts")
 local storage = require("lazylearn.storage")
+local obsidian = require("lazylearn.obsidian")
 
 -- État du plugin
 M.is_setup = false
@@ -80,17 +81,28 @@ function M._continue_learn(text)
       ui.show_response(response, { title = " " .. selected_prompt.name .. " " })
 
       -- Proposer de sauvegarder si l'option est activée
-      if config.options.storage.enabled then
+      if config.options.storage.enabled or config.options.obsidian.enabled then
         vim.defer_fn(function()
           if config.options.storage.auto_save then
             -- Sauvegarder automatiquement avec un nom généré
             local name = selected_prompt.name .. " - " .. os.date("%Y-%m-%d %H:%M")
-            storage.add_concept(name, text, response)
+
+            -- Obsidian ou JSON selon config
+            if config.options.obsidian.enabled then
+              obsidian.save_concept(name, text, response, selected_prompt.name)
+            else
+              storage.add_concept(name, text, response)
+            end
           else
             -- Demander à l'utilisateur
             ui.input("Sauvegarder ce concept? (nom ou vide pour ignorer): ", function(name)
               if name and name ~= "" then
-                storage.add_concept(name, text, response)
+                -- Obsidian ou JSON selon config
+                if config.options.obsidian.enabled then
+                  obsidian.save_concept(name, text, response, selected_prompt.name)
+                else
+                  storage.add_concept(name, text, response)
+                end
               end
             end)
           end
@@ -156,6 +168,22 @@ function M.setup(opts)
   vim.api.nvim_create_user_command("LLearnTest", function()
     M.test_connection()
   end, { desc = "Tester la connexion au provider" })
+
+  vim.api.nvim_create_user_command("LLearnIndex", function()
+    obsidian.create_index()
+  end, { desc = "Créer l'index Obsidian des concepts" })
+
+  vim.api.nvim_create_user_command("LLearnObsidian", function()
+    local concepts = obsidian.list_concepts()
+    if #concepts == 0 then
+      ui.info("Aucun concept Obsidian trouvé")
+      return
+    end
+
+    ui.select_prompt(concepts, function(concept)
+      obsidian.open_in_obsidian(concept.path)
+    end)
+  end, { desc = "Ouvrir un concept dans Obsidian" })
 
   -- Créer les raccourcis clavier
   -- Mode visuel: déclencher LazyLearn

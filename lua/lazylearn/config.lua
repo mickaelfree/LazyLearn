@@ -75,6 +75,17 @@ M.defaults = {
     },
   },
 
+  -- Configuration Obsidian
+  obsidian = {
+    enabled = false,                                      -- Activer l'intégration Obsidian
+    vault_path = vim.fn.expand("~/Documents/Obsidian"),  -- Chemin vers votre vault Obsidian
+    vault_name = "MyVault",                              -- Nom de votre vault
+    concepts_folder = "LazyLearn",                       -- Dossier pour les concepts dans le vault
+    open_after_save = false,                             -- Ouvrir dans Obsidian après sauvegarde
+    auto_index = true,                                   -- Créer automatiquement l'index
+    template_path = nil,                                 -- Chemin vers un template custom (optionnel)
+  },
+
   -- Raccourcis clavier
   keymaps = {
     -- Mode visuel
