@@ -1,0 +1,88 @@
+{
+  "name": "Example Pack",
+  "version": "1.0.0",
+  "author": "LazyLearn Contributors",
+  "description": "Exemple de pack communautaire avec des techniques d'apprentissage personnalisées",
+  "prompts": [
+    {
+      "id": "eli5",
+      "name": "ELI5 (Explain Like I'm 5)",
+      "icon": "👶",
+      "category": "custom",
+      "description": "Explication ultra-simple",
+      "prompt": "Explique ce concept comme si j'avais 5 ans. Utilise des mots très simples, des analogies avec des jouets, des animaux, ou des situations familières à un enfant. Évite tout jargon technique.\n\nLe concept à expliquer est : "
+    },
+    {
+      "id": "rubber_duck",
+      "name": "Rubber Duck Debugging",
+      "icon": "🦆",
+      "category": "custom",
+      "description": "Méthode du canard en plastique",
+      "prompt": "Aide-moi à déboguer ce code en jouant le rôle d'un canard en plastique. Pose-moi des questions simples pour me faire réfléchir ligne par ligne :\n\n1. Que fait chaque ligne exactement ?\n2. Quelles sont mes hypothèses ?\n3. Où pourraient être les bugs ?\n4. Que se passe-t-il si je teste avec des cas extrêmes ?\n\nLe code à déboguer est : "
+    },
+    {
+      "id": "time_complexity",
+      "name": "Analyse de Complexité",
+      "icon": "⏱️",
+      "category": "custom",
+      "description": "Analyse Big O détaillée",
+      "prompt": "Analyse la complexité algorithmique de ce code :\n\n1. **Complexité temporelle (Big O)** :\n   - Meilleur cas\n   - Cas moyen\n   - Pire cas\n\n2. **Complexité spatiale (Big O)** :\n   - Mémoire utilisée\n   - Stack vs Heap\n\n3. **Optimisations possibles** :\n   - Comment réduire la complexité ?\n   - Quels trade-offs considérer ?\n\n4. **Comparaison** :\n   - Comment se compare-t-il aux alternatives ?\n\nLe code à analyser est : "
+    },
+    {
+      "id": "real_world_use",
+      "name": "Cas d'Usage Réel",
+      "icon": "🌎",
+      "category": "custom",
+      "description": "Applications dans le monde réel",
+      "prompt": "Explique comment ce concept est utilisé dans le monde réel :\n\n1. **Entreprises/Projets célèbres** qui l'utilisent\n2. **Cas d'usage concrets** avec exemples\n3. **Problèmes résolus** par ce concept\n4. **Alternatives** utilisées dans l'industrie\n5. **Tendances futures** liées à ce concept\n\nLe concept à contextualiser est : "
+    },
+    {
+      "id": "interview_prep",
+      "name": "Préparation Interview",
+      "icon": "💼",
+      "category": "custom",
+      "description": "Questions d'entretien technique",
+      "prompt": "Prépare-moi pour un entretien technique sur ce concept :\n\n1. **Questions fréquentes** :\n   - 5 questions courantes en interview\n   - Réponses attendues\n\n2. **Pièges à éviter** :\n   - Erreurs courantes des candidats\n   - Comment les éviter\n\n3. **Questions avancées** :\n   - Questions pour candidats expérimentés\n   - Comment impressionner l'intervieweur\n\n4. **Exercices pratiques** :\n   - 2-3 exercices de code à maîtriser\n\nLe concept pour l'interview est : "
+    },
+    {
+      "id": "cheat_sheet",
+      "name": "Cheat Sheet",
+      "icon": "📋",
+      "category": "custom",
+      "description": "Antisèche condensée",
+      "prompt": "Crée une cheat sheet concise et complète pour ce concept :\n\n1. **Syntaxe essentielle** (avec exemples)\n2. **Cas d'usage principaux** (top 5)\n3. **Pièges courants** (top 3)\n4. **Méthodes/fonctions importantes**\n5. **Exemples de code rapides**\n6. **Ressources pour aller plus loin**\n\nFormat : Ultra-condensé, facile à scanner visuellement\n\nLe concept pour la cheat sheet est : "
+    },
+    {
+      "id": "learning_resources",
+      "name": "Ressources d'Apprentissage",
+      "icon": "📚",
+      "category": "custom",
+      "description": "Ressources pour approfondir",
+      "prompt": "Recommande des ressources pour approfondir ce concept :\n\n1. **Tutoriels** (débutant, intermédiaire, avancé)\n2. **Documentation officielle** (sections pertinentes)\n3. **Livres** (classiques et modernes)\n4. **Vidéos/Cours** (YouTube, Udemy, etc.)\n5. **Projets pratiques** pour s'exercer\n6. **Communautés** (Discord, Reddit, forums)\n\nClasse par niveau de difficulté.\n\nLe concept à approfondir est : "
+    },
+    {
+      "id": "common_bugs",
+      "name": "Bugs Courants",
+      "icon": "🐛",
+      "category": "custom",
+      "description": "Erreurs typiques et solutions",
+      "prompt": "Liste les bugs et erreurs les plus courants avec ce concept :\n\n1. **Top 5 des bugs** :\n   - Description du bug\n   - Pourquoi il arrive\n   - Comment le détecter\n   - Comment le corriger\n\n2. **Messages d'erreur courants** :\n   - Interprétation\n   - Solutions\n\n3. **Prévention** :\n   - Bonnes pratiques pour éviter ces bugs\n   - Outils de détection\n\nLe concept à analyser est : "
+    },
+    {
+      "id": "refactoring_tips",
+      "name": "Refactoring",
+      "icon": "♻️",
+      "category": "custom",
+      "description": "Améliorer le code existant",
+      "prompt": "Suggère des refactorings pour améliorer ce code :\n\n1. **Code smell détecté** :\n   - Quels anti-patterns ?\n   - Pourquoi sont-ils problématiques ?\n\n2. **Refactorings proposés** :\n   - Étape par étape\n   - Version avant/après\n   - Bénéfices de chaque refactoring\n\n3. **Design patterns applicables** :\n   - Quels patterns améliorerait le code ?\n   - Comment les implémenter ?\n\nLe code à refactorer est : "
+    },
+    {
+      "id": "testing_strategy",
+      "name": "Stratégie de Tests",
+      "icon": "🧪",
+      "category": "custom",
+      "description": "Comment tester ce code",
+      "prompt": "Crée une stratégie de tests complète pour ce code :\n\n1. **Tests unitaires** :\n   - Cas nominaux\n   - Cas limites\n   - Cas d'erreur\n\n2. **Tests d'intégration** :\n   - Scénarios à tester\n   - Mocks nécessaires\n\n3. **Couverture** :\n   - Objectif de couverture\n   - Zones critiques\n\n4. **Exemples de tests** :\n   - Code de test concret\n   - Framework recommandé\n\nLe code à tester est : "
+    }
+  ]
+}
