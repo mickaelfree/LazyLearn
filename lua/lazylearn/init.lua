@@ -12,6 +12,7 @@ local api = require("lazylearn.api")
 local prompts = require("lazylearn.prompts")
 local storage = require("lazylearn.storage")
 local obsidian = require("lazylearn.obsidian")
+local naming = require("lazylearn.naming")
 
 -- État du plugin
 M.is_setup = false
@@ -83,19 +84,24 @@ function M._continue_learn(text)
       -- Proposer de sauvegarder si l'option est activée
       if config.options.storage.enabled or config.options.obsidian.enabled then
         vim.defer_fn(function()
-          if config.options.storage.auto_save then
-            -- Sauvegarder automatiquement avec un nom généré
-            local name = selected_prompt.name .. " - " .. os.date("%Y-%m-%d %H:%M")
+          -- Générer un nom automatique
+          local auto_name = naming.generate_name(text, selected_prompt.name, response)
 
-            -- Obsidian ou JSON selon config
+          if config.options.storage.auto_save or config.options.obsidian.auto_save then
+            -- Sauvegarder automatiquement avec le nom généré
             if config.options.obsidian.enabled then
-              obsidian.save_concept(name, text, response, selected_prompt.name)
+              obsidian.save_concept(auto_name, text, response, selected_prompt.name)
             else
-              storage.add_concept(name, text, response)
+              storage.add_concept(auto_name, text, response)
             end
           else
-            -- Demander à l'utilisateur
-            ui.input("Sauvegarder ce concept? (nom ou vide pour ignorer): ", function(name)
+            -- Demander confirmation avec le nom pré-rempli
+            ui.input("Nom du concept (Entrée pour accepter '" .. auto_name .. "'): ", function(name)
+              -- Si vide, utiliser le nom auto
+              if not name or name == "" then
+                name = auto_name
+              end
+
               if name and name ~= "" then
                 -- Obsidian ou JSON selon config
                 if config.options.obsidian.enabled then
@@ -104,7 +110,7 @@ function M._continue_learn(text)
                   storage.add_concept(name, text, response)
                 end
               end
-            end)
+            end, { default = auto_name })
           end
         end, 1000)
       end

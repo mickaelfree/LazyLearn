@@ -82,6 +82,7 @@ M.defaults = {
     vault_name = "MyVault",                              -- Nom de votre vault
     concepts_folder = "LazyLearn",                       -- Dossier pour les concepts dans le vault
     open_after_save = false,                             -- Ouvrir dans Obsidian après sauvegarde
+    auto_save = false,                                   -- Sauvegarder automatiquement sans demander
     auto_index = true,                                   -- Créer automatiquement l'index
     template_path = nil,                                 -- Chemin vers un template custom (optionnel)
   },
