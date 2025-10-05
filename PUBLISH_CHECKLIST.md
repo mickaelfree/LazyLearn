@@ -1,4 +1,4 @@
-# ✅ Checklist de Publication - LazyLearn.nvim
+# ✅ Checklist de Publication - LazyLearn
 
 ## 📋 Avant de publier sur GitHub
 
@@ -18,7 +18,7 @@
 
 ```bash
 # 1. Allez sur https://github.com/new
-# 2. Repository name: LazyLearn.nvim
+# 2. Repository name: LazyLearn
 # 3. Description: 🧠 Un plugin Neovim pour apprendre à coder avec l'IA
 # 4. Public ✓
 # 5. Ne pas initialiser avec README
@@ -28,7 +28,7 @@
 ### 2. Pousser le code
 
 ```bash
-cd /home/evilryu117/Music/LazyLearn.nvim
+cd /home/evilryu117/Music/LazyLearn
 
 # Vérifier le statut
 git status
@@ -47,14 +47,14 @@ git push -u origin main
 # Sur GitHub:
 # 1. Aller dans "Releases" → "Create a new release"
 # 2. Tag: v1.0.0
-# 3. Release title: LazyLearn.nvim v1.0.0 - Initial Release
+# 3. Release title: LazyLearn v1.0.0 - Initial Release
 # 4. Description:
 ```
 
 ```markdown
-# 🎉 LazyLearn.nvim v1.0.0
+# 🎉 LazyLearn v1.0.0
 
-Première version stable de LazyLearn.nvim !
+Première version stable de LazyLearn !
 
 ## ✨ Fonctionnalités
 
@@ -70,7 +70,7 @@ Première version stable de LazyLearn.nvim !
 
 ```lua
 {
-  "mickaelfree/LazyLearn.nvim",
+  "mickaelfree/LazyLearn",
   dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
     require("lazylearn.init").setup()
@@ -80,7 +80,7 @@ Première version stable de LazyLearn.nvim !
 
 ## 🚀 Quick Start
 
-Voir [QUICK_START.md](https://github.com/mickaelfree/LazyLearn.nvim/blob/main/QUICK_START.md)
+Voir [QUICK_START.md](https://github.com/mickaelfree/LazyLearn/blob/main/QUICK_START.md)
 
 ## 📝 Changelog
 
@@ -109,7 +109,7 @@ Merci à la communauté Neovim !
 2. **Créer** `~/.config/nvim/lua/plugins/lazylearn.lua` :
    ```lua
    return {
-     "mickaelfree/LazyLearn.nvim",
+     "mickaelfree/LazyLearn",
      dependencies = { "nvim-lua/plenary.nvim" },
      config = function()
        require("lazylearn.init").setup({
@@ -139,14 +139,14 @@ Merci à la communauté Neovim !
 
 1. **Créer un lien symbolique** :
    ```bash
-   ln -s /home/evilryu117/Music/LazyLearn.nvim \
-         ~/.local/share/nvim/site/pack/plugins/start/LazyLearn.nvim
+   ln -s /home/evilryu117/Music/LazyLearn \
+         ~/.local/share/nvim/site/pack/plugins/start/LazyLearn
    ```
 
 2. **Ou utiliser le chemin local dans la config** :
    ```lua
    return {
-     dir = "/home/evilryu117/Music/LazyLearn.nvim",
+     dir = "/home/evilryu117/Music/LazyLearn",
      dependencies = { "nvim-lua/plenary.nvim" },
      config = function()
        require("lazylearn.init").setup()
@@ -193,12 +193,12 @@ Merci à la communauté Neovim !
 
 ### 1. Reddit r/neovim
 
-Titre : `[Plugin] LazyLearn.nvim - Apprendre à coder avec l'IA directement dans Neovim`
+Titre : `[Plugin] LazyLearn - Apprendre à coder avec l'IA directement dans Neovim`
 
 ```markdown
 Salut r/neovim !
 
-Je viens de publier LazyLearn.nvim, un plugin pour apprendre à coder avec l'aide d'une IA.
+Je viens de publier LazyLearn, un plugin pour apprendre à coder avec l'aide d'une IA.
 
 🎯 **Concept** : Sélectionnez du code, appuyez sur <leader>h, choisissez une technique d'apprentissage, et recevez une explication adaptée.
 
@@ -209,7 +209,7 @@ Je viens de publier LazyLearn.nvim, un plugin pour apprendre à coder avec l'aid
 - Interface avec fenêtres flottantes
 - Extensible via packs JSON
 
-🔗 **Repo** : https://github.com/mickaelfree/LazyLearn.nvim
+🔗 **Repo** : https://github.com/mickaelfree/LazyLearn
 
 Vos retours sont les bienvenus ! 🚀
 ```
@@ -219,7 +219,7 @@ Vos retours sont les bienvenus ! 🚀
 Chaîne : `#plugins`
 
 ```
-🎉 Nouveau plugin : LazyLearn.nvim
+🎉 Nouveau plugin : LazyLearn
 
 Un assistant d'apprentissage IA intégré à Neovim !
 - 42 techniques d'apprentissage
@@ -227,7 +227,7 @@ Un assistant d'apprentissage IA intégré à Neovim !
 - Révision espacée
 - UI moderne
 
-https://github.com/mickaelfree/LazyLearn.nvim
+https://github.com/mickaelfree/LazyLearn
 
 N'hésitez pas à tester et donner vos avis ! 🚀
 ```
@@ -235,7 +235,7 @@ N'hésitez pas à tester et donner vos avis ! 🚀
 ### 3. Twitter/X
 
 ```
-🚀 LazyLearn.nvim - Nouvelle release !
+🚀 LazyLearn - Nouvelle release !
 
 Apprenez à coder avec l'IA directement dans Neovim :
 ✨ 42 techniques d'apprentissage
@@ -243,7 +243,7 @@ Apprenez à coder avec l'IA directement dans Neovim :
 💾 Révision espacée
 🎨 UI moderne
 
-https://github.com/mickaelfree/LazyLearn.nvim
+https://github.com/mickaelfree/LazyLearn
 
 #neovim #vim #coding #AI
 ```

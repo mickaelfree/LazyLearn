@@ -1,18 +1,18 @@
-# 🚀 Quick Start - LazyLearn.nvim
+# 🚀 Quick Start - LazyLearn
 
 Guide rapide pour tester le plugin comme un utilisateur.
 
 ## Étape 1 : Publier sur GitHub
 
 ```bash
-cd /home/evilryu117/Music/LazyLearn.nvim
+cd /home/evilryu117/Music/LazyLearn
 
 # Créer le premier commit
 git add .
-git commit -m "🎉 Initial release - LazyLearn.nvim v1.0.0"
+git commit -m "🎉 Initial release - LazyLearn v1.0.0"
 
 # Ajouter le remote GitHub
-git remote add origin https://github.com/mickaelfree/LazyLearn.nvim.git
+git remote add origin https://github.com/mickaelfree/LazyLearn.git
 
 # Pousser sur GitHub
 git branch -M main
@@ -22,7 +22,7 @@ git push -u origin main
 ## Étape 2 : Créer le dépôt sur GitHub
 
 1. Allez sur https://github.com/new
-2. **Repository name** : `LazyLearn.nvim`
+2. **Repository name** : `LazyLearn`
 3. **Description** : `🧠 Un plugin Neovim pour apprendre à coder avec l'IA`
 4. **Public** ✅
 5. **Ne pas** initialiser avec README, .gitignore ou LICENSE
@@ -47,7 +47,7 @@ Créez le fichier `~/.config/nvim/lua/plugins/lazylearn.lua` :
 
 ```lua
 return {
-  "mickaelfree/LazyLearn.nvim",
+  "mickaelfree/LazyLearn",
   dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
     require("lazylearn.init").setup({
@@ -220,7 +220,7 @@ Le plugin s'installe avec lazy.nvim normalement. Sinon :
 
 ## 🎉 Félicitations !
 
-Vous utilisez maintenant LazyLearn.nvim !
+Vous utilisez maintenant LazyLearn !
 
 **Prochaines étapes** :
 - Essayez toutes les 42 techniques
@@ -230,5 +230,5 @@ Vous utilisez maintenant LazyLearn.nvim !
 
 ---
 
-**Repo** : https://github.com/mickaelfree/LazyLearn.nvim
+**Repo** : https://github.com/mickaelfree/LazyLearn
 **Support** : Ouvrez une issue sur GitHub

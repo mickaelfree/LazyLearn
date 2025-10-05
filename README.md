@@ -18,7 +18,7 @@ Un plugin Neovim open-source qui permet d'apprendre à coder directement dans Ne
 
 ```lua
 {
-  "mickaelfree/LazyLearn.nvim",
+  "mickaelfree/LazyLearn",
   dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
     require("lazylearn").setup({
@@ -60,7 +60,7 @@ Un plugin Neovim open-source qui permet d'apprendre à coder directement dans Ne
 
 ```lua
 use {
-  "mickaelfree/LazyLearn.nvim",
+  "mickaelfree/LazyLearn",
   requires = { "nvim-lua/plenary.nvim" },
   config = function()
     require("lazylearn").setup()

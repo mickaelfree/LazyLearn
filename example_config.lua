@@ -3,7 +3,7 @@
 
 return {
   -- Version GitHub (recommandée)
-  "mickaelfree/LazyLearn.nvim",
+  "mickaelfree/LazyLearn",
 
   -- Pour test local, décommentez :
   -- dir = vim.fn.expand("~/.config/nvim/lua/LazyLearn.nvim"),
