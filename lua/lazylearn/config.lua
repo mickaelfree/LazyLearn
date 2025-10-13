@@ -87,6 +87,15 @@ M.defaults = {
     template_path = nil,                                 -- Chemin vers un template custom (optionnel)
   },
 
+  -- Configuration Communauté (Epic Meaning & Calling)
+  community = {
+    enabled = true,                                      -- Activer le système communautaire
+    data_path = vim.fn.stdpath("data") .. "/lazylearn_community.json", -- Données communautaires
+    auto_share_prompt = false,                           -- Demander après chaque concept
+    simulate_impact = true,                              -- Simuler l'impact pour la démo (mettre false en prod)
+    show_impact_on_startup = true,                       -- Rappeler votre impact au démarrage
+  },
+
   -- Raccourcis clavier
   keymaps = {
     -- Mode visuel
@@ -132,6 +141,14 @@ function M.setup(opts)
       if vim.fn.isdirectory(pack_path) == 0 then
         vim.fn.mkdir(pack_path, "p")
       end
+    end
+  end
+
+  -- Créer le répertoire pour les données communautaires
+  if M.options.community.enabled then
+    local community_dir = vim.fn.fnamemodify(M.options.community.data_path, ":h")
+    if vim.fn.isdirectory(community_dir) == 0 then
+      vim.fn.mkdir(community_dir, "p")
     end
   end
 

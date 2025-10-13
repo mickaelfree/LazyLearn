@@ -13,6 +13,7 @@ local prompts = require("lazylearn.prompts")
 local storage = require("lazylearn.storage")
 local obsidian = require("lazylearn.obsidian")
 local naming = require("lazylearn.naming")
+local community = require("lazylearn.community")
 
 -- État du plugin
 M.is_setup = false
@@ -145,6 +146,16 @@ function M.test_connection()
   api.test_connection()
 end
 
+-- Partager un concept avec la communauté
+function M.share_concept()
+  community.show_share_menu()
+end
+
+-- Afficher les stats d'impact communautaire
+function M.show_community_impact()
+  community.show_impact_stats()
+end
+
 -- Configuration du plugin
 function M.setup(opts)
   -- Charger la configuration
@@ -191,6 +202,14 @@ function M.setup(opts)
     end)
   end, { desc = "Ouvrir un concept dans Obsidian" })
 
+  vim.api.nvim_create_user_command("LLearnShare", function()
+    M.share_concept()
+  end, { desc = "Partager un concept avec la communauté" })
+
+  vim.api.nvim_create_user_command("LLearnCommunity", function()
+    M.show_community_impact()
+  end, { desc = "Afficher votre impact communautaire" })
+
   -- Créer les raccourcis clavier
   -- Mode visuel: déclencher LazyLearn
   vim.keymap.set("v", config.options.keymaps.trigger, function()
@@ -221,6 +240,21 @@ function M.setup(opts)
     vim.defer_fn(function()
       storage.check_due_reviews()
     end, 2000)
+  end
+
+  -- Initialiser le profil communautaire et afficher l'impact
+  if config.options.community.enabled then
+    vim.defer_fn(function()
+      community.init_user_profile()
+
+      -- Afficher l'impact au démarrage si activé
+      if config.options.community.show_impact_on_startup then
+        local data = community.load_community_data()
+        if data.impact_stats.total_helped > 0 then
+          ui.info("🌟 Votre apprentissage a aidé " .. data.impact_stats.total_helped .. " développeur(s) ! Utilisez :LLearnCommunity pour plus de détails.")
+        end
+      end
+    end, 3000)
   end
 
   M.is_setup = true
