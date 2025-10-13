@@ -112,12 +112,12 @@ function M.create_float(content, opts)
   -- Créer la fenêtre
   local win = api.nvim_open_win(buf, true, win_opts)
 
-  -- Configuration du buffer
-  api.nvim_buf_set_option(buf, "modifiable", false)
-  api.nvim_buf_set_option(buf, "buftype", "nofile")
-  api.nvim_buf_set_option(buf, "bufhidden", "wipe")
-  api.nvim_buf_set_option(buf, "filetype", "markdown")
-  api.nvim_buf_set_option(buf, "syntax", "markdown")
+  -- Configuration du buffer (utiliser vim.bo pour éviter les API dépréciés)
+  vim.bo[buf].modifiable = false
+  vim.bo[buf].buftype = "nofile"
+  vim.bo[buf].bufhidden = "wipe"
+  vim.bo[buf].filetype = "markdown"
+  vim.bo[buf].syntax = "markdown"
 
   -- Configuration de la fenêtre
   if config.options.ui.transparency > 0 then
@@ -194,14 +194,14 @@ function M.update_window(win, content)
   end
 
   -- Rendre le buffer modifiable temporairement
-  api.nvim_buf_set_option(buf, "modifiable", true)
+  vim.bo[buf].modifiable = true
 
   -- Mettre à jour le contenu
   local lines = vim.split(content, "\n")
   api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 
   -- Remettre en lecture seule
-  api.nvim_buf_set_option(buf, "modifiable", false)
+  vim.bo[buf].modifiable = false
 
   return true
 end

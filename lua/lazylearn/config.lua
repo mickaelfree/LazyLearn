@@ -96,6 +96,81 @@ M.defaults = {
     show_impact_on_startup = true,                       -- Rappeler votre impact au démarrage
   },
 
+  -- Configuration Progression (Development & Accomplishment)
+  progression = {
+    enabled = true,                                      -- Activer le système de progression
+    data_path = vim.fn.stdpath("data") .. "/lazylearn_progression.json", -- Données de progression
+    show_xp_notifications = true,                        -- Afficher les gains d'XP
+    show_level_up_animation = true,                      -- Animation au level up
+    track_daily_streak = true,                           -- Suivre le streak quotidien
+    auto_track = true,                                   -- Tracker automatiquement les actions
+  },
+
+  -- Configuration Créativité (Empowerment of Creativity & Feedback)
+  creativity = {
+    enabled = true,                                      -- Activer le système de créativité
+    data_path = vim.fn.stdpath("data") .. "/lazylearn_creativity.json", -- Données créatives
+    enable_remixing = true,                              -- Activer le remix de concepts
+    enable_custom_prompts = true,                        -- Permettre les prompts personnalisés
+    enable_variations = true,                            -- Créer des variations de concepts
+    auto_apply_learning_style = true,                    -- Appliquer le style d'apprentissage automatiquement
+  },
+
+  -- Configuration Possession (Ownership & Possession)
+  ownership = {
+    enabled = true,                                      -- Activer le système de possession
+    data_path = vim.fn.stdpath("data") .. "/lazylearn_ownership.json", -- Données de possession
+    enable_collections = true,                           -- Collections thématiques
+    enable_concept_cards = true,                         -- Cartes à collectionner
+    enable_customization = true,                         -- Personnalisation des concepts
+    auto_check_achievements = true,                      -- Vérifier les achievements automatiquement
+  },
+
+  -- Configuration Social (Social Influence & Relatedness)
+  social = {
+    enabled = true,                                      -- Activer le système social
+    data_path = vim.fn.stdpath("data") .. "/lazylearn_social.json", -- Données sociales
+    enable_leaderboards = true,                          -- Classements et rankings
+    enable_peer_comparison = true,                       -- Comparaison avec pairs
+    enable_mentorship = true,                            -- Système de mentors
+    enable_study_groups = true,                          -- Groupes d'étude
+    enable_trending = true,                              -- Concepts populaires
+    simulate_community = true,                           -- Simuler la communauté (false en prod)
+  },
+
+  -- Configuration Scarcity (Scarcity & Impatience)
+  scarcity = {
+    enabled = true,                                      -- Activer le système de rareté
+    data_path = vim.fn.stdpath("data") .. "/lazylearn_scarcity.json", -- Données de rareté
+    enable_daily_challenges = true,                      -- Challenges quotidiens (24h)
+    enable_weekly_challenges = true,                     -- Challenges hebdomadaires
+    enable_exclusive_content = true,                     -- Contenu exclusif débloquable
+    enable_countdown_timers = true,                      -- Timers de compte à rebours
+    auto_check_challenges = true,                        -- Vérifier automatiquement
+  },
+
+  -- Configuration Unpredictability (Unpredictability & Curiosity)
+  unpredictability = {
+    enabled = true,                                      -- Activer le système d'imprévisibilité
+    data_path = vim.fn.stdpath("data") .. "/lazylearn_unpredictability.json", -- Données d'imprévisibilité
+    enable_mystery_rewards = true,                       -- Récompenses mystères quotidiennes
+    enable_easter_eggs = true,                           -- Easter eggs aléatoires
+    enable_random_discovery = true,                      -- Découverte de concepts aléatoires
+    enable_mystery_prompts = true,                       -- Prompts mystères progressifs
+    easter_egg_check_frequency = 0.1,                    -- Vérifier 10% du temps
+  },
+
+  -- Configuration Loss (Loss & Avoidance)
+  loss = {
+    enabled = true,                                      -- Activer le système de perte
+    data_path = vim.fn.stdpath("data") .. "/lazylearn_loss.json", -- Données de perte/évitement
+    enable_decay_warnings = true,                        -- Avertissements de déclin
+    enable_streak_protection = true,                     -- Protections de streak achetables
+    enable_fomo_notifications = true,                    -- Notifications FOMO
+    enable_sunk_cost_display = true,                     -- Affichage investissement
+    show_warnings_on_startup = true,                     -- Avertir au démarrage
+  },
+
   -- Raccourcis clavier
   keymaps = {
     -- Mode visuel
@@ -124,16 +199,21 @@ local function merge_tables(base, override)
   return result
 end
 
+-- Fonction helper pour créer un répertoire si nécessaire
+local function ensure_dir(path)
+  local dir = vim.fn.fnamemodify(path, ":h")
+  if vim.fn.isdirectory(dir) == 0 then
+    vim.fn.mkdir(dir, "p")
+  end
+end
+
 -- Initialiser la configuration
 function M.setup(opts)
   opts = opts or {}
   M.options = merge_tables(M.defaults, opts)
 
   -- Créer les répertoires nécessaires si absents
-  local storage_dir = vim.fn.fnamemodify(M.options.storage.path, ":h")
-  if vim.fn.isdirectory(storage_dir) == 0 then
-    vim.fn.mkdir(storage_dir, "p")
-  end
+  ensure_dir(M.options.storage.path)
 
   -- Créer les répertoires pour les packs
   if M.options.packs.enabled then
@@ -144,11 +224,21 @@ function M.setup(opts)
     end
   end
 
-  -- Créer le répertoire pour les données communautaires
-  if M.options.community.enabled then
-    local community_dir = vim.fn.fnamemodify(M.options.community.data_path, ":h")
-    if vim.fn.isdirectory(community_dir) == 0 then
-      vim.fn.mkdir(community_dir, "p")
+  -- Créer les répertoires pour tous les systèmes de gamification
+  local gamification_systems = {
+    { name = "community", config = M.options.community },
+    { name = "progression", config = M.options.progression },
+    { name = "creativity", config = M.options.creativity },
+    { name = "ownership", config = M.options.ownership },
+    { name = "social", config = M.options.social },
+    { name = "scarcity", config = M.options.scarcity },
+    { name = "unpredictability", config = M.options.unpredictability },
+    { name = "loss", config = M.options.loss },
+  }
+
+  for _, system in ipairs(gamification_systems) do
+    if system.config.enabled and system.config.data_path then
+      ensure_dir(system.config.data_path)
     end
   end
 

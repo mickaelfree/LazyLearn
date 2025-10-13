@@ -355,6 +355,18 @@ function M.show_next_review()
     vim.keymap.set("n", tostring(i), function()
       M.update_review(index, i)
 
+      -- Tracker la progression
+      if config.options.progression and config.options.progression.enabled and config.options.progression.auto_track then
+        local progression = require("lazylearn.progression")
+        progression.record_review(concept.name, i)
+
+        -- Tracker pour scarcity (challenges quotidiens)
+        if config.options.scarcity and config.options.scarcity.enabled and config.options.scarcity.auto_check_challenges then
+          local scarcity = require("lazylearn.scarcity")
+          scarcity.track_review(i)
+        end
+      end
+
       local intervals = config.options.spaced_repetition.intervals
       local interval = intervals[i] or 1
 
